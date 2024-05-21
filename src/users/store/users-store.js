@@ -2,13 +2,17 @@ import { loadUsersByPage } from "../use-cases/load-users-by-page";
 
 
 
-const state ={
+const state = {
     currentPage:0,
     users: [],
 }
 
 const loadNextPage = async() =>{
-    await loadUsersByPage(state.currentPage + 1 );
+    const user = await loadUsersByPage(state.currentPage + 1 );
+    if ( user.length === 0 ) return;
+
+    state.currentPage +=1;
+    state.users = users;
     
 }
 
